@@ -1,0 +1,35 @@
+{
+    "name": "zikula/foohookmodule-module",
+    "version": "1.0.0",
+    "description": "FooHookModule description",
+    "type": "zikula-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Name",
+            "homepage": "http://example.com/",
+            "email": "example@example.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Zikula\\FooHookModule\\": "" }
+    },
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "extra": {
+        "zikula": {
+            "core-compatibility": ">=2.0.0",
+            "class": "Zikula\\FooHookModule\\ZikulaFooHookModule",
+            "displayname": "FooHookModule",
+            "url": "foohook",
+            "capabilities": {
+                "user": {"route": "zikulafoohookmodule_default_index"},
+                "admin": {"route": "zikulafoohookmodule_config_settings"}
+            },
+            "securityschema": {
+                "ZikulaFooHookModule::": "::"
+            }
+        }
+    }
+}

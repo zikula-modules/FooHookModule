@@ -1,0 +1,15 @@
+services:
+    zikula_foo_hook_module.link_container:
+        class: Zikula\FooHookModule\Container\LinkContainer
+        arguments:
+          - "@translator.default"
+          - "@router"
+          - "@zikula_permissions_module.api.permission"
+        tags:
+          - { name: zikula.link_container }
+
+    zikula_foohook_module.hook_handler:
+        class: Zikula\FooHookModule\Handler\ProviderHandler
+        arguments:
+          - "@twig"
+          - "@request_stack"
