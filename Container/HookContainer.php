@@ -19,9 +19,9 @@ use Zikula\FooHookModule\Handler\ProviderHandler;
 class HookContainer extends AbstractHookContainer
 {
     const SUBSCRIBER_UIAREANAME = 'zikula.foohookmodule.subscriber';
-    const SUBSCRIBER_FILTER_UIAREANAME = 'zikula.foohookmodule.subscriber';
+    const SUBSCRIBER_FILTER_UIAREANAME = 'zikula.foohookmodule.filter.subscriber';
     const PROVIDER_UIAREANAME = 'zikula.foohookmodule.provider';
-    const PROVIDER_FILTER_UIAREANAME = 'zikula.foohookmodule.provider';
+    const PROVIDER_FILTER_UIAREANAME = 'zikula.foohookmodule.filter.provider';
 
     /**
      * Define the hook bundles supported by this module.
