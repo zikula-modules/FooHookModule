@@ -13,3 +13,9 @@ services:
         arguments:
           - "@twig"
           - "@request_stack"
+
+    zikula_foohook_module.hook_handler.filter:
+        class: Zikula\FooHookModule\Handler\ProviderHandler
+        arguments:
+          - "@twig"
+          - "@request_stack"

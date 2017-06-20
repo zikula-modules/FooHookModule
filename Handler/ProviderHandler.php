@@ -49,7 +49,7 @@ class ProviderHandler
 
     public function uiEdit(DisplayHook $hook)
     {
-        $hook->setResponse(new DisplayHookResponse(HookContainer::PROVIDER_UIAREANAME, '<input name="zikulafoomodule[name]" value="zikula" type="hidden">'));
+        $hook->setResponse(new DisplayHookResponse(HookContainer::PROVIDER_UIAREANAME, '<div>ZikulaFooModuleContent hooked.</div><input name="zikulafoomodule[name]" value="zikula" type="hidden">'));
     }
 
     public function validateEdit(ValidationHook $hook)
@@ -60,6 +60,8 @@ class ProviderHandler
         } else {
             $response = new ValidationResponse('name',['name' => 'Name must be Zikula']);
             $hook->setValidator('zikulafoomodule', $response);
+
+            return false;
         }
     }
 
