@@ -39,7 +39,7 @@ class HookContainer extends AbstractHookContainer
         $bundle->addEvent(UiHooksCategory::TYPE_DISPLAY_VIEW, 'zikulafoohookmodule.ui_hooks.foo.display_view'); // <module>.<category>.<area>.<type>
         $bundle->addEvent(UiHooksCategory::TYPE_FORM_EDIT, 'zikulafoohookmodule.ui_hooks.foo.form_edit');
         $bundle->addEvent(UiHooksCategory::TYPE_VALIDATE_EDIT, 'zikulafoohookmodule.ui_hooks.foo.validate_edit');
-        $bundle->addEvent(UiHooksCategory::TYPES_PROCESS_EDIT, 'zikulafoohookmodule.ui_hooks.foo.process_edit');
+        $bundle->addEvent(UiHooksCategory::TYPE_PROCESS_EDIT, 'zikulafoohookmodule.ui_hooks.foo.process_edit');
         $this->registerHookSubscriberBundle($bundle);
 
         $bundle = new SubscriberBundle('ZikulaFooHookModule', self::SUBSCRIBER_FILTER_UIAREANAME, FilterHooksCategory::NAME, $this->__('Foo Subscriber Filter Hooks'));
@@ -53,7 +53,7 @@ class HookContainer extends AbstractHookContainer
         $bundle->addServiceHandler(UiHooksCategory::TYPE_DISPLAY_VIEW, ProviderHandler::class, 'uiView', 'zikula_foohook_module.hook_handler');
         $bundle->addServiceHandler(UiHooksCategory::TYPE_FORM_EDIT, ProviderHandler::class, 'uiEdit', 'zikula_foohook_module.hook_handler');
         $bundle->addServiceHandler(UiHooksCategory::TYPE_VALIDATE_EDIT, ProviderHandler::class, 'validateEdit', 'zikula_foohook_module.hook_handler');
-        $bundle->addServiceHandler(UiHooksCategory::TYPES_PROCESS_EDIT, ProviderHandler::class, 'processEdit', 'zikula_foohook_module.hook_handler');
+        $bundle->addServiceHandler(UiHooksCategory::TYPE_PROCESS_EDIT, ProviderHandler::class, 'processEdit', 'zikula_foohook_module.hook_handler');
         $this->registerHookProviderBundle($bundle);
 
         $bundle = new ProviderBundle('ZikulaFooHookModule', self::PROVIDER_FILTER_UIAREANAME, FilterHooksCategory::NAME, $this->__('FooHook Filter Provider'));
