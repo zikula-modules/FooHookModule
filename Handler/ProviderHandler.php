@@ -35,6 +35,7 @@ class ProviderHandler
     /**
      * ProviderHandler constructor.
      * @param \Twig_Environment $twig
+     * @param RequestStack $requestStack
      */
     public function __construct(\Twig_Environment $twig, RequestStack $requestStack)
     {
