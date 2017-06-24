@@ -23,23 +23,16 @@ use Zikula\FooHookModule\Container\HookContainer;
 class ProviderHandler
 {
     /**
-     * @var \Twig_Environment
-     */
-    private $twig;
-
-    /**
      * @var RequestStack
      */
     private $requestStack;
 
     /**
      * ProviderHandler constructor.
-     * @param \Twig_Environment $twig
      * @param RequestStack $requestStack
      */
-    public function __construct(\Twig_Environment $twig, RequestStack $requestStack)
+    public function __construct(RequestStack $requestStack)
     {
-        $this->twig = $twig;
         $this->requestStack = $requestStack;
     }
 
