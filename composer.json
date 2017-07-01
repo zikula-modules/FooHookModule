@@ -19,13 +19,11 @@
     },
     "extra": {
         "zikula": {
-            "core-compatibility": ">=2.0.0",
+            "core-compatibility": ">=1.5.0",
             "class": "Zikula\\FooHookModule\\ZikulaFooHookModule",
             "displayname": "FooHookModule",
             "url": "foohook",
             "capabilities": {
-                "hook_subscriber": {"class": "Zikula\\FooHookModule\\Container\\HookContainer"},
-                "hook_provider": {"class": "Zikula\\FooHookModule\\Container\\HookContainer"},
                 "user": {"route": "zikulafoohookmodule_default_index"},
                 "admin": {"route": "zikulafoohookmodule_config_settings"}
             },

@@ -20,7 +20,7 @@ use Zikula\Bundle\HookBundle\Hook\ValidationHook;
 use Zikula\Bundle\HookBundle\Hook\ValidationResponse;
 use Zikula\FooHookModule\Container\HookContainer;
 
-class ProviderHandler
+class UiHooksProviderHandler
 {
     /**
      * @var RequestStack
@@ -49,11 +49,12 @@ class ProviderHandler
     public function validateEdit(ValidationHook $hook)
     {
         $post = $this->requestStack->getCurrentRequest()->request->all();
-        if ($post['name'] == 'zikula') {
+        if ($this->requestStack->getCurrentRequest()->request->has('zikulafoomodule') && $post['zikulafoomodule']['name'] == 'zikula') {
             return true;
         } else {
-            $response = new ValidationResponse('name',['name' => 'Name must be Zikula']);
-            $hook->setValidator('zikulafoomodule', $response);
+            $response = new ValidationResponse('mykey', $post['zikulafoomodule']);
+            $response->addError('name', sprintf('Name must be zikula but was %s', $post['zikulafoomodule']['name']));
+            $hook->setValidator(HookContainer::PROVIDER_UIAREANAME, $response);
 
             return false;
         }
@@ -61,13 +62,12 @@ class ProviderHandler
 
     public function processEdit(ProcessHook $hook)
     {
-        $x = 1;
-        $this->requestStack->getMasterRequest()->getSession()->getFlashBag()->add('success', 'hook properly processed!');
+        $this->requestStack->getMasterRequest()->getSession()->getFlashBag()->add('success', 'Ui hook properly processed!');
     }
 
     public function filter(FilterHook $hook)
     {
         $content = $hook->getData();
-        $hook->setData('PRE ' . $content . ' POST');
+        $hook->setData('PRE>>> ' . $content . ' <<<POST');
     }
 }

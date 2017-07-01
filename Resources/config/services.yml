@@ -9,11 +9,39 @@ services:
           - { name: zikula.link_container }
 
     zikula_foohook_module.hook_handler:
-        class: Zikula\FooHookModule\Handler\ProviderHandler
+        class: Zikula\FooHookModule\Handler\UiHooksProviderHandler
         arguments:
           - "@request_stack"
 
     zikula_foohook_module.hook_handler.filter:
-        class: Zikula\FooHookModule\Handler\ProviderHandler
+        class: Zikula\FooHookModule\Handler\UiHooksProviderHandler
         arguments:
           - "@request_stack"
+
+    zikula_foohook_module.form_aware_hook_provider:
+        class: Zikula\FooHookModule\HookProvider\FormAwareHookProvider
+        arguments:
+          - "@session"
+          - "@translator.default"
+          - "@form.factory"
+        tags:
+            - { name: zikula.hook_provider, areaName: 'provider.zikulafoohookmodule.form_aware_hook.foo' }
+
+    zikula_foohook_module.hook_provider.ui_hooks_provider:
+        class: Zikula\FooHookModule\HookProvider\UiHooksProvider
+        arguments: ['@translator.default']
+        tags:
+            - { name: zikula.hook_provider, areaName: 'provider.zikulafoohookmodule.nonpersisted_ui_hooks.foo' }
+
+    zikula_foohook_module.hook_provider.filter_hooks_provider:
+        class: Zikula\FooHookModule\HookProvider\FilterHooksProvider
+        arguments: ['@translator.default']
+        tags:
+            - { name: zikula.hook_provider, areaName: 'provider.zikulafoohookmodule.nonpersisted_filter_hooks.foo' }
+
+    zikula_foohook_module.form_aware_hook_subscriber:
+        class: Zikula\FooHookModule\HookSubscriber\FormAwareHookSubscriber
+        arguments:
+          - '@translator.default'
+        tags:
+            - { name: zikula.hook_subscriber, areaName: 'subscriber.zikulafoohookmodule.form_aware_hook.foo' }
