@@ -15,14 +15,12 @@ use Zikula\Bundle\HookBundle\Category\UiHooksCategory;
 use Zikula\Bundle\HookBundle\Hook\DisplayHook;
 use Zikula\Bundle\HookBundle\Hook\DisplayHookResponse;
 use Zikula\Bundle\HookBundle\HookProviderInterface;
+use Zikula\Bundle\HookBundle\ServiceIdTrait;
 use Zikula\Common\Translator\TranslatorInterface;
 
 class UiHooksProvider implements HookProviderInterface
 {
-    /**
-     * @var string
-     */
-    private $serviceId;
+    use ServiceIdTrait;
 
     /**
      * @var TranslatorInterface
@@ -59,16 +57,6 @@ class UiHooksProvider implements HookProviderInterface
         return [
             UiHooksCategory::TYPE_DISPLAY_VIEW => ['display', 'display_more'],
         ];
-    }
-
-    public function setServiceId($serviceId)
-    {
-        $this->serviceId = $serviceId;
-    }
-
-    public function getServiceId()
-    {
-        return $this->serviceId;
     }
 
     public function display(DisplayHook $hook)

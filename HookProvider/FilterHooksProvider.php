@@ -14,14 +14,12 @@ namespace Zikula\FooHookModule\HookProvider;
 use Zikula\Bundle\HookBundle\Category\FilterHooksCategory;
 use Zikula\Bundle\HookBundle\Hook\FilterHook;
 use Zikula\Bundle\HookBundle\HookProviderInterface;
+use Zikula\Bundle\HookBundle\ServiceIdTrait;
 use Zikula\Common\Translator\TranslatorInterface;
 
 class FilterHooksProvider implements HookProviderInterface
 {
-    /**
-     * @var string
-     */
-    private $serviceId;
+    use ServiceIdTrait;
 
     /**
      * @var TranslatorInterface
@@ -57,16 +55,6 @@ class FilterHooksProvider implements HookProviderInterface
         return [
             FilterHooksCategory::TYPE_FILTER => ['filter1', 'filter2', 'filter3']
         ];
-    }
-
-    public function setServiceId($serviceId)
-    {
-        $this->serviceId = $serviceId;
-    }
-
-    public function getServiceId()
-    {
-        return $this->serviceId;
     }
 
     public function filter1(FilterHook $hook)
