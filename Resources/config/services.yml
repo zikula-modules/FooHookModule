@@ -8,16 +8,6 @@ services:
         tags:
           - { name: zikula.link_container }
 
-    zikula_foohook_module.hook_handler:
-        class: Zikula\FooHookModule\Handler\UiHooksProviderHandler
-        arguments:
-          - "@request_stack"
-
-    zikula_foohook_module.hook_handler.filter:
-        class: Zikula\FooHookModule\Handler\UiHooksProviderHandler
-        arguments:
-          - "@request_stack"
-
     zikula_foohook_module.form_aware_hook_provider:
         class: Zikula\FooHookModule\HookProvider\FormAwareHookProvider
         arguments:
@@ -29,15 +19,17 @@ services:
 
     zikula_foohook_module.hook_provider.ui_hooks_provider:
         class: Zikula\FooHookModule\HookProvider\UiHooksProvider
-        arguments: ['@translator.default']
+        arguments:
+          - '@translator.default'
+          - '@request_stack'
         tags:
-            - { name: zikula.hook_provider, areaName: 'provider.zikulafoohookmodule.nonpersisted_ui_hooks.foo' }
+            - { name: zikula.hook_provider, areaName: 'provider.zikulafoohookmodule.ui_hooks.foo' }
 
     zikula_foohook_module.hook_provider.filter_hooks_provider:
         class: Zikula\FooHookModule\HookProvider\FilterHooksProvider
         arguments: ['@translator.default']
         tags:
-            - { name: zikula.hook_provider, areaName: 'provider.zikulafoohookmodule.nonpersisted_filter_hooks.foo' }
+            - { name: zikula.hook_provider, areaName: 'provider.zikulafoohookmodule.filter_hooks.foo' }
 
     zikula_foohook_module.form_aware_hook_subscriber:
         class: Zikula\FooHookModule\HookSubscriber\FormAwareHookSubscriber
@@ -45,3 +37,15 @@ services:
           - '@translator.default'
         tags:
             - { name: zikula.hook_subscriber, areaName: 'subscriber.zikulafoohookmodule.form_aware_hook.foo' }
+
+    zikula_foo_hook_module.hook_subscriber.ui_hooks_subscriber:
+        class: Zikula\FooHookModule\HookSubscriber\UiHooksSubscriber
+        arguments: ['@translator.default']
+        tags:
+            - { name: zikula.hook_subscriber, areaName: 'subscriber.zikulafoohookmodule.ui_hooks.foo' }
+
+    zikula_foo_hook_module.hook_subscriber.filter_hooks_subscriber:
+        class: Zikula\FooHookModule\HookSubscriber\FilterHooksSubscriber
+        arguments: ['@translator.default']
+        tags:
+            - { name: zikula.hook_subscriber, areaName: 'subscriber.zikulafoohookmodule.filter_hooks.foo' }

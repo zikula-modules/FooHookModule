@@ -8,9 +8,6 @@ class FooHookModuleInstaller extends AbstractExtensionInstaller
 {
     public function install()
     {
-        $this->hookApi->installSubscriberHooks($this->bundle->getMetaData());
-        $this->hookApi->installProviderHooks($this->bundle->getMetaData());
-
         return true;
     }
 
@@ -21,8 +18,6 @@ class FooHookModuleInstaller extends AbstractExtensionInstaller
 
     public function uninstall()
     {
-        $this->hookApi->uninstallSubscriberHooks($this->bundle->getMetaData());
-        $this->hookApi->uninstallProviderHooks($this->bundle->getMetaData());
         return true;
     }
 }
